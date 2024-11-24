@@ -45,12 +45,12 @@ const config: Config = {
         ServicesColor:'#edf2f4',
         SevicesButtonColor:"#2b2d42",
         SecondServicesSection:"#d8e2dc",
-        SecondServices:'#d8f3dc',
+        SecondServices:'#F8F1F1',
         ThirdServices: "#F4F7FE",
-        FourthServices:"#f8ffe5",
-        FifthServices:"#caf0f8",
-        SixthServices:"#ffe5ec",
-        SeventhServices:"#"
+        FourthServices:"#e3f2fd",
+        FifthServices:"#fae0e4",
+        SixthServices:"#eaf4f4",
+        SeventhServices:"#fdf0d5"
 
       }, // colors end
     }, // Extend End

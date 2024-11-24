@@ -16,7 +16,7 @@ function ThirdSection() {
           className="w-full max-w-lg h-auto rounded-lg object-cover transform transition-all duration-300 hover:scale-105
        shadow-[0_25px_60px_rgba(220,_38,_38,_0.8)] hover:shadow-[0_25px_60px_rgba(59,_130,_246,_0.8)]"
         />
-        hover:
+        
       </div>
 
       {/* Section Texte */}
