@@ -27,11 +27,11 @@ export const projects = [
 
 function inscription() {
   return (
-    <div className=' font-Ubuntu bg-InscriptionColor min-h-screen w-full flex justify-center  py-36'>
+    <div className=' font-Ubuntu bg-inscriptionColor min-h-screen w-full flex justify-center  py-36'>
       <div>
         <div className='text-center'>
           <h2 className=' text-black font-semibold tracking-wide uppercase text-3xl' >Comment ça marche ?</h2><br />
-          <h3 className=' text-5xl leading-8 font-extrabold tracking-tight text-TextColor  ' >Une inscription en 3 étapes</h3>
+          <h3 className=' text-5xl leading-8 font-extrabold tracking-tight text-textColor  ' >Une inscription en 3 étapes</h3>
         </div>
 
         <div className="max-w-6xl mx-auto px-8 mt-28">

@@ -19,7 +19,7 @@ import { div, h1, span } from "framer-motion/client";
 
 export function Services() {
   return (
-<section className="w-full font-Ubuntu bg-ServicesColor py-16">
+<section className="w-full font-Ubuntu  py-16">
   <div className="container mx-auto ">
     <h2 className="text-5xl font-bold text-center mb-10 text-black">
       Découvrez nos <span className="text-TextColor">Services</span>  !!
@@ -37,7 +37,7 @@ export function Services() {
       ))}
     </BentoGrid>
     <div className="flex flex-col sm:flex-row items-center justify-center  flex-wrap mt-6 ">
-    <Button className=" bg-SevicesButtonColor">
+    <Button className=" bg-servicesButtonColor">
     Services
   </Button>
     </div>

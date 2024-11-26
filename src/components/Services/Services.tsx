@@ -30,7 +30,7 @@ const HomeServices: React.FC = () => {
           SERVICES & CONCIERGERIE
         </h2>
         <h3 className="text-white mt-4 text-3xl sm:text-5xl leading-tight font-extrabold tracking-tight">
-          Une Conciergerie <span className="text-TextColor">Engagée</span>
+          Une Conciergerie <span className="text-textColor">Engagée</span>
         </h3>
         <p className="text-gray-300 font-medium mt-6 max-w-3xl mx-auto text-sm sm:text-lg leading-relaxed">
           Découvrez une gamme complète de services conçus pour répondre à vos besoins
@@ -55,7 +55,7 @@ const HomeServices: React.FC = () => {
         <h4 className="text-gray-300 font-medium text-xl sm:text-2xl max-w-3xl mx-auto">
           Découvrez nos services exclusifs et laissez-nous dépasser vos attentes.
         </h4>
-        <button className="mt-6 px-6 sm:px-8 py-3 sm:py-4 bg-TextColor text-white font-bold rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-2px] transition-all duration-300">
+        <button className="mt-6 px-6 sm:px-8 py-3 sm:py-4 bg-textColor text-white font-bold rounded-lg shadow-md hover:shadow-lg hover:translate-y-[-2px] transition-all duration-300">
           Explorer Nos Services
         </button>
       </div>

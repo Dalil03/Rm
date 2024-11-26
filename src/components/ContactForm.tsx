@@ -8,7 +8,6 @@ interface FormData {
   email: string;
   tel: string;
   adresse: string;
-  superficie: string;
   typologie: string;
   description: string;
 }
@@ -21,7 +20,6 @@ export default function ContactForm() {
     email: '',
     tel: '',
     adresse: '',
-    superficie: '',
     typologie: '',
     description: '',
   });
@@ -50,7 +48,6 @@ export default function ContactForm() {
           email: '',
           tel: '',
           adresse: '',
-          superficie: '',
           typologie: '',
           description: '',
         });
