@@ -5,7 +5,6 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-// Type pour les données du formulaire
 interface FormData {
   prenom: string;
   nom: string;
@@ -23,11 +22,10 @@ export function Form({ onClose }: { onClose: () => void }) {
     email: "",
     tel: "",
     adresse: "",
-    typologie: "", // Valeur par défaut
+    typologie: "",
     description: "",
   });
 
-  // Gestion des champs
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => {
@@ -35,7 +33,6 @@ export function Form({ onClose }: { onClose: () => void }) {
     setFormData({ ...formData, [id]: value });
   };
 
-  // Gestion de la soumission
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
@@ -57,6 +54,8 @@ export function Form({ onClose }: { onClose: () => void }) {
           description: "",
         });
         onClose();
+        // Redirection vers Calendly
+        window.location.href = "https://calendly.com/rim-conciergerie/30min";
       } else {
         alert("Une erreur est survenue. Veuillez réessayer.");
       }
@@ -68,22 +67,18 @@ export function Form({ onClose }: { onClose: () => void }) {
 
   return (
     <div>
-      {/* Fond assombri */}
       <div
         className="fixed inset-0 bg-black bg-opacity-80 z-40"
         onClick={onClose}
       />
-      {/* Contenu centré */}
       <div className="fixed inset-0 flex items-center justify-center z-50">
         <div className="bg-white w-full max-w-7xl rounded-xl shadow-lg flex">
-          {/* Section image */}
           <div
             className="hidden md:flex w-1/2 bg-cover bg-center rounded-l-lg"
             style={{
-              backgroundImage: `url('/Images/form_image.webp')`, // Remplacez par le chemin de votre image
+              backgroundImage: `url('/Images/form_image.webp')`,
             }}
           />
-          {/* Formulaire */}
           <div className="w-full md:w-1/2 p-8">
             <button
               onClick={onClose}
@@ -93,7 +88,6 @@ export function Form({ onClose }: { onClose: () => void }) {
             </button>
             <h2 className="text-xl font-bold mb-4">Parlons de vous :</h2>
             <form onSubmit={handleSubmit}>
-              {/* Champs prénom et nom */}
               <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
                 <LabelInputContainer>
                   <Label htmlFor="prenom">Prénom</Label>
@@ -117,7 +111,6 @@ export function Form({ onClose }: { onClose: () => void }) {
                 </LabelInputContainer>
               </div>
 
-              {/* Email */}
               <LabelInputContainer className="mb-4">
                 <Label htmlFor="email">Email</Label>
                 <Input
@@ -129,7 +122,6 @@ export function Form({ onClose }: { onClose: () => void }) {
                 />
               </LabelInputContainer>
 
-              {/* Téléphone */}
               <LabelInputContainer className="mb-4">
                 <Label htmlFor="tel">Téléphone</Label>
                 <Input
@@ -143,7 +135,6 @@ export function Form({ onClose }: { onClose: () => void }) {
 
               <h3 className="text-lg font-semibold mb-2">Parlons de votre bien :</h3>
 
-              {/* Adresse */}
               <LabelInputContainer className="mb-4">
                 <Label htmlFor="adresse">Adresse</Label>
                 <Input
@@ -155,7 +146,6 @@ export function Form({ onClose }: { onClose: () => void }) {
                 />
               </LabelInputContainer>
 
-              {/* Typologie */}
               <div className="flex space-x-2 mb-4">
                 <LabelInputContainer>
                   <Label htmlFor="typologie">Typologie</Label>
@@ -181,7 +171,6 @@ export function Form({ onClose }: { onClose: () => void }) {
                 </LabelInputContainer>
               </div>
 
-              {/* Description */}
               <LabelInputContainer className="mb-4">
                 <Label htmlFor="description">Description</Label>
                 <textarea
@@ -193,7 +182,6 @@ export function Form({ onClose }: { onClose: () => void }) {
                 />
               </LabelInputContainer>
 
-              {/* Bouton d'envoi */}
               <button
                 className="bg-red-500 text-white py-2 px-4 rounded-xl w-full"
                 type="submit"
@@ -208,7 +196,6 @@ export function Form({ onClose }: { onClose: () => void }) {
   );
 }
 
-// Container pour les champs de formulaire
 const LabelInputContainer = ({
   children,
   className,

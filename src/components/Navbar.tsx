@@ -60,7 +60,7 @@ function Navbar({ className }: { className?: string }) {
             transition: { duration: 0.3 },
           }}
           className={cn(
-            "fixed top-10 inset-x-0 max-w-5xl mx-auto z-50 text-xl shadow-[rgba(0,0,0,0.3)_0px_4px_10px_-2px,_rgba(255,255,255,0.2)_0px_1px_0px_inset,_rgba(0,0,0,0.2)_0px_8px_20px_-5px] rounded-full transition-transform duration-300",
+            "fixed top-10 inset-x-0 max-w-5xl mx-auto z-50 text-xl ",
             className
           )}
         >
