@@ -6,7 +6,8 @@ export default function Home() {
 <>
 {/* bg-black/[0.96] */}
 <main>  
-<Rdv/>
+<Rdv onClose={() => console.log("Modal fermé")} />
+
 </main>
 </>
   )

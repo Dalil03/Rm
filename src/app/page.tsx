@@ -1,7 +1,8 @@
 import Image from "next/image";
 import HeroSection from "@/components/HeroSection"
 import Inscription from "@/components/inscription"
-import Services from "@/components/Services/ServicesSection"
+import ServicesSection from "@/components/Services/ServicesSection"
+import Questions from "@/components/questions"
 
 export default function Home() {
   return (
@@ -10,7 +11,8 @@ export default function Home() {
 <main>  
   <HeroSection/>
 <Inscription/>
-<Services/>
+<ServicesSection />
+<Questions />
 </main>
 </>
   )

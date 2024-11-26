@@ -1,6 +1,8 @@
 "use client";
 
 import React, { useState, ChangeEvent, FormEvent } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useEffect, useRef } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
@@ -22,9 +24,30 @@ export function Form({ onClose }: { onClose: () => void }) {
     email: "",
     tel: "",
     adresse: "",
-    typologie: "",
+    typologie: "Studio",
     description: "",
   });
+
+  const [message, setMessage] = useState<string | null>(null);
+  const controls = useAnimation(); // Animation controls
+  const sectionRef = useRef<HTMLDivElement>(null); // Observer for visibility
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          controls.start("visible");
+        }
+      },
+      { threshold: 0.3 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [controls]);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -33,8 +56,17 @@ export function Form({ onClose }: { onClose: () => void }) {
     setFormData({ ...formData, [id]: value });
   };
 
+  const validateForm = () => {
+    return Object.values(formData).every((value) => value.trim() !== "");
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!validateForm()) {
+      setMessage("Veuillez remplir tous les champs.");
+      return;
+    }
+
     try {
       const response = await fetch("api/send-email", {
         method: "POST",
@@ -43,51 +75,91 @@ export function Form({ onClose }: { onClose: () => void }) {
       });
 
       if (response.ok) {
-        alert("Votre message a été envoyé avec succès !");
-        setFormData({
-          prenom: "",
-          nom: "",
-          email: "",
-          tel: "",
-          adresse: "",
-          typologie: "",
-          description: "",
-        });
-        onClose();
-        // Redirection vers Calendly
-        window.location.href = "https://calendly.com/rim-conciergerie/30min";
+        setMessage(
+          "Votre message a bien été envoyé !\n\nVous allez être redirigé vers Calendly..."
+        );
+        setTimeout(() => {
+          window.open("https://calendly.com/rim-conciergerie/30min", "_blank");
+          setMessage(null); // Ferme le message d'envoi
+          onClose(); // Ferme le formulaire
+        }, 3000);
       } else {
-        alert("Une erreur est survenue. Veuillez réessayer.");
+        setMessage("Une erreur est survenue. Veuillez réessayer.");
       }
     } catch (error) {
       console.error(error);
-      alert("Erreur lors de l'envoi.");
+      setMessage("Une erreur est survenue. Veuillez réessayer.");
     }
   };
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-60"
+    >
       <div
-        className="fixed inset-0 bg-black bg-opacity-80 z-40"
-        onClick={onClose}
-      />
-      <div className="fixed inset-0 flex items-center justify-center z-50">
-        <div className="bg-white w-full max-w-7xl rounded-xl shadow-lg flex">
-          <div
-            className="hidden md:flex w-1/2 bg-cover bg-center rounded-l-lg"
-            style={{
-              backgroundImage: `url('/Images/form_image.webp')`,
+        ref={sectionRef}
+        className="bg-white w-full max-w-6xl rounded-xl shadow-lg flex flex-wrap overflow-hidden"
+      >
+        {/* Image section with animation inside */}
+        <motion.div
+          className="hidden md:flex w-full md:w-1/2 h-auto bg-cover bg-center rounded-l-lg overflow-hidden"
+          initial="hidden"
+          animate={controls}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.2,
+                delayChildren: 0.2,
+              },
+            },
+          }}
+        >
+          <motion.div
+            className="h-full w-full"
+            initial={{ scale: 1 }}
+            animate={{ scale: 1.1 }}
+            transition={{
+              duration: 10,
+              ease: "easeInOut",
+              repeat: Infinity,
+              repeatType: "reverse",
             }}
-          />
-          <div className="w-full md:w-1/2 p-8">
+          >
+            <img
+              src="/Images/form_image.webp"
+              alt="Form Visual"
+              className="h-full w-full object-cover"
+            />
+          </motion.div>
+        </motion.div>
+
+        <div className="w-full md:w-1/2 p-8 relative">
+          {!message && (
             <button
               onClick={onClose}
               className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
             >
               ✕
             </button>
-            <h2 className="text-xl font-bold mb-4">Parlons de vous :</h2>
+          )}
+          {message ? (
+            <div className="flex items-center justify-center h-[250px] text-center">
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-textColor text-xl font-semibold whitespace-pre-line leading-relaxed"
+              >
+                {message}
+              </motion.p>
+            </div>
+          ) : (
             <form onSubmit={handleSubmit}>
+              <h2 className="text-xl text-textColor font-bold mb-4">Parlons de votre projet :</h2>
               <div className="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-2 mb-4">
                 <LabelInputContainer>
                   <Label htmlFor="prenom">Prénom</Label>
@@ -133,7 +205,7 @@ export function Form({ onClose }: { onClose: () => void }) {
                 />
               </LabelInputContainer>
 
-              <h3 className="text-lg font-semibold mb-2">Parlons de votre bien :</h3>
+              <h3 className="text-lg text-textColor font-semibold mb-2">Détails sur votre bien :</h3>
 
               <LabelInputContainer className="mb-4">
                 <Label htmlFor="adresse">Adresse</Label>
@@ -158,16 +230,9 @@ export function Form({ onClose }: { onClose: () => void }) {
                     <option value="Studio">Studio</option>
                     <option value="Appartement">Appartement</option>
                     <option value="Maison">Maison</option>
+                    <option value="Chalet">Chalet</option>
+                    <option value="Villa">Villa</option>
                   </select>
-                </LabelInputContainer>
-                <LabelInputContainer>
-                  <Label htmlFor="superficie">Superficie (m²)</Label>
-                  <Input
-                    id="superficie"
-                    placeholder="Ex : 75"
-                    type="number"
-                    onChange={handleChange}
-                  />
                 </LabelInputContainer>
               </div>
 
@@ -183,16 +248,16 @@ export function Form({ onClose }: { onClose: () => void }) {
               </LabelInputContainer>
 
               <button
-                className="bg-red-500 text-white py-2 px-4 rounded-xl w-full"
+                className="bg-red-500 text-white py-2 px-4 rounded-xl w-full hover:bg-red-600 transition duration-300"
                 type="submit"
               >
                 Envoyer
               </button>
             </form>
-          </div>
+          )}
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
@@ -204,9 +269,7 @@ const LabelInputContainer = ({
   className?: string;
 }) => {
   return (
-    <div className={cn("flex flex-col space-y-2 w-full", className)}>
-      {children}
-    </div>
+    <div className={cn("flex flex-col space-y-2 w-full", className)}>{children}</div>
   );
 };
 

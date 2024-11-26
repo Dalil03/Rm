@@ -47,7 +47,7 @@ const config: Config = {
         customColor: "#1d1c2a",
         inscriptionColor: "#edede9", // Correct capitalization
         textColor: "#FF5A5F", // Correct capitalization
-        servicesColor: "#edf2f4", // Correct capitalization
+        servicesColor: "#f8f9fa", // Correct capitalization
         servicesButtonColor: "#2b2d42", // Correct capitalization
         secondServicesSection: "#d8e2dc", // Correct capitalization
         secondServices: "#F8F1F1", // Correct capitalization
