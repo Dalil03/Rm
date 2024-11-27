@@ -1,13 +1,22 @@
 import type { Config } from "tailwindcss";
 /** @type {import('tailwindcss').Config} */
 
-
+const {
+  default: flattenColorPalette,
+} = require("tailwindcss/lib/util/flattenColorPalette");
 
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  safelist: [
+    "h-1",
+    "bg-gray-200",
+    "bg-red-500",
+    "transition-all",
+    "duration-300",
   ],
 
   darkMode: "class",
@@ -21,6 +30,9 @@ const config: Config = {
 
       animation: {
         spotlight: "spotlight 2s ease .75s 1 forwards",
+        scroll:
+          "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+        gradientBG: "gradientBG 8s ease infinite",
       },
 
       keyframes: {
@@ -33,6 +45,16 @@ const config: Config = {
             opacity: "1",
             transform: "translate(-50%, -40%) scale(1)",
           },
+        },
+        scroll: {
+          to: {
+            transform: "translate(calc(-50% - 0.5rem))",
+          },
+        },
+        gradientBG: {
+          "0%": { "background-position": "0% 50%" },
+          "50%": { "background-position": "100% 50%" },
+          "100%": { "background-position": "0% 50%" },
         },
       },
 
@@ -60,8 +82,18 @@ const config: Config = {
     },
   },
 
-  plugins: [],
+  plugins: [addVariablesForColors],
 };
 
+function addVariablesForColors({ addBase, theme }: any) {
+  let allColors = flattenColorPalette(theme("colors"));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+
+  addBase({
+    ":root": newVars,
+  });
+}
 
 export default config;

@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection"
 import Inscription from "@/components/inscription"
 import ServicesSection from "@/components/Services/ServicesSection"
 import Questions from "@/components/questions"
+import MovingCards from "@/components/avis"
 
 export default function Home() {
   return (
@@ -14,6 +15,8 @@ export default function Home() {
 <ServicesSection />
 <Questions />
 </main>
+<MovingCards/>
+
 </>
   )
 }

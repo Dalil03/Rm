@@ -10,21 +10,21 @@ export const projects = [
     description:
       "Nous prenons contact avec vous pour répondre à toutes vos questions sur la conciergerie et prévoir une future visite.",
     link: "#",
-    icon: <FaRegCalendarCheck className="text-4xl text-red-500" />,
+    icon: <FaRegCalendarCheck className="text-4xl text-red-500 cursor-pointer" />,
   },
   {
     title: "Visite du logement",
     description:
       "Nous venons visiter votre logement, afin de noter toutes vos remarques, recommandations et tous les défauts du logement.",
     link: "/",
-    icon: <FaHome className="text-4xl text-red-500" />,
+    icon: <FaHome className="text-4xl text-red-500 cursor-pointer" />,
   },
   {
     title: "Lancement des services",
     description:
       "Après la signature du contrat et la remise des clés, nous commençons à travailler sur votre annonce !",
     link: "//",
-    icon: <FaRocket className="text-4xl text-red-500" />,
+    icon: <FaRocket className="text-4xl text-red-500 cursor-pointer" />,
   },
 ];
 
@@ -50,11 +50,11 @@ function Inscription() {
   return (
     <div
       ref={sectionRef}
-      className="font-Ubuntu bg-gray-100 min-h-screen w-full flex flex-col items-center py-36"
+      className="font-Ubuntu h-[58rem] bg-gray-100 w-full flex flex-col items-center py-20 sm:py-28 min-h-screen" // Ensure the section fills the screen height
     >
-      {/* Titre de la section */}
+      {/* Section Title */}
       <motion.div
-        className="text-center mb-16"
+        className="text-center mb-12 px-4 sm:px-0"
         initial={{ opacity: 0, y: -20 }}
         animate={controls}
         variants={{
@@ -63,18 +63,17 @@ function Inscription() {
         }}
         transition={{ duration: 0.8 }}
       >
-        <h2 className="text-black font-semibold tracking-wide uppercase text-3xl">
+        <h2 className="text-gray-800 font-semibold tracking-wide uppercase text-lg sm:text-xl">
           Comment ça marche ?
         </h2>
-        <br />
-        <h3 className="text-5xl leading-8 font-extrabold tracking-tight text-red-500">
+        <h3 className="mt-2 text-2xl sm:text-3xl font-extrabold tracking-tight text-red-500">
           Une inscription en 3 étapes
         </h3>
       </motion.div>
 
-      {/* Cartes */}
+      {/* Cards */}
       <motion.div
-        className="max-w-6xl mx-auto px-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+        className="w-full max-w-6xl px-4 sm:px-8 grid grid-cols-1 md:grid-cols-3 gap-6"
         initial="hidden"
         animate={controls}
         variants={{
@@ -82,7 +81,7 @@ function Inscription() {
           visible: {
             opacity: 1,
             transition: {
-              staggerChildren: 0.2, // Délai progressif entre chaque carte
+              staggerChildren: 0.2,
             },
           },
         }}
@@ -90,30 +89,32 @@ function Inscription() {
         {projects.map((project, index) => (
           <motion.div
             key={index}
-            className="bg-white rounded-lg shadow-lg p-8 flex flex-col items-center text-center hover:shadow-2xl transition-shadow duration-300"
+            className="bg-white rounded-lg shadow-md p-6 sm:p-8 flex flex-col items-center text-center hover:shadow-lg transition-shadow duration-300"
             variants={{
               hidden: { opacity: 0, y: 20 },
               visible: { opacity: 1, y: 0 },
             }}
           >
-            {/* Icône avec animation au survol */}
+            {/* Icon */}
             <motion.div
               whileHover={{
-                scale: 1.2, // Zoom
-                rotate: 15, // Rotation
+                scale: 1.2,
+                rotate: 15,
               }}
               transition={{ type: "spring", stiffness: 300 }}
               className="mb-4"
             >
               {project.icon}
             </motion.div>
-            {/* Titre */}
-            <h4 className="text-xl font-semibold text-gray-800 mb-4">
+            {/* Title */}
+            <h4 className="text-lg sm:text-xl font-semibold text-gray-800 mb-3">
               {project.title}
             </h4>
             {/* Description */}
-            <p className="text-gray-600 mb-4">{project.description}</p>
-            {/* Lien */}
+            <p className="text-sm sm:text-base text-gray-600 mb-4">
+              {project.description}
+            </p>
+            {/* Link */}
             <a
               href={project.link}
               className="text-red-500 font-semibold hover:underline"
@@ -124,9 +125,9 @@ function Inscription() {
         ))}
       </motion.div>
 
-      {/* Texte en dessous des cartes */}
+      {/* Additional Information */}
       <motion.div
-        className="mt-24 text-center text-3xl font-semibold tracking-tight space-y-2"
+        className="mt-16 text-center text-lg sm:text-xl font-medium tracking-tight px-4 sm:px-0 space-y-2"
         initial={{ opacity: 0, y: 20 }}
         animate={controls}
         variants={{
@@ -137,15 +138,17 @@ function Inscription() {
       >
         <p>Conciergerie immobilière</p>
         <p>Spécialisée en location courte durée</p>
-        <p>Maximisez vos revenus, sans lever le petit doigt !</p>
+        <p>
+          <span className="text-textColor">Maximisez</span> vos revenus, sans lever le petit doigt !
+        </p>
       </motion.div>
 
-      {/* Bouton Call-to-Action */}
+      {/* Call-to-Action Button */}
       <motion.button
-        className="mt-8 px-6 py-3 bg-textColor font-bold text-white text-lg rounded-lg shadow-lg hover:shadow-2xl"
+        className="mt-8 px-6 py-3 bg-red-500 font-bold text-white text-lg rounded-lg shadow-md hover:shadow-lg"
         whileHover={{
-          scale: 1.1, // Zoom
-          backgroundColor: "#e11d48", // Couleur légèrement plus foncée
+          scale: 1.05,
+          backgroundColor: "#e11d48",
         }}
         transition={{ duration: 0.3 }}
       >

@@ -25,131 +25,119 @@ export function ServicesSection() {
   }, [controls]);
 
   return (
-    <section className='py-56'>
- <div
+    <section
       ref={sectionRef}
-     className="relative h-auto w-full  max-w-5xl mx-auto  shadow-lg rounded-xl overflow-hidden"
+      className="relative  h-[57rem] w-full flex items-center justify-center bg-gray-50"
     >
-      {/* Section Image */}
-      <motion.div
-        className="relative h-96 rounded-t-xl overflow-hidden"
-        initial={{ scale: 1 }}
-        animate={{ scale: 1.1 }}
-        transition={{
-          duration: 10,
-          ease: 'easeInOut',
-          repeat: Infinity,
-          repeatType: 'reverse',
-        }}
-      >
-        <img
-          src="/Images/carousel_2.webp"
-          alt="Real Estate Services"
-          className="w-full h-full object-cover"
-        />
-      </motion.div>
-
-      {/* Section Contenu */}
-      <div className="p-8 bg-white rounded-b-xl  shadow-md text-center">
-        <motion.p
-          className="text-3xl font-extrabold text-textColor mb-4 tracking-tight"
-          initial={{ opacity: 0, y: -20 }}
-          animate={controls}
-          variants={{
-            hidden: { opacity: 0, y: -20 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          transition={{ duration: 0.8 }}
-        >
-          Une vision long terme
-        </motion.p>
-        <motion.p
-          className="text-lg text-gray-600 leading-relaxed mb-6"
-          initial={{ opacity: 0, y: -20 }}
-          animate={controls}
-          variants={{
-            hidden: { opacity: 0, y: -20 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          Augmentez les revenus locatifs de{' '}
-          <span className="text-textColor">votre bien immobilier</span>
-        </motion.p>
-
-        {/* Liste des services centrée */}
+      <div className="relative w-full max-w-2xl sm:max-w-4xl mx-auto bg-white shadow-lg rounded-xl overflow-hidden">
+        {/* Section Image */}
         <motion.div
-          className="grid grid-cols-1 md:grid-cols-2 gap-y-4 gap-x-8 justify-center"
-          initial="hidden"
-          animate={controls}
-          variants={{
-            hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.2,
-              },
-            },
+          className="relative h-52 sm:h-64 md:h-80 rounded-t-xl overflow-hidden"
+          initial={{ scale: 1 }}
+          animate={{ scale: 1.1 }}
+          transition={{
+            duration: 10,
+            ease: 'easeInOut',
+            repeat: Infinity,
+            repeatType: 'reverse',
           }}
         >
-          <Step title="Création d'annonces attractives" />
-          <Step title="Optimisation des annonces" />
-          <Step title="Shooting photo professionnel" />
-          <Step title="Stratégie tarifaire dynamique" />
-          <Step title="Gestion complète des voyageurs" />
-          <Step title="Sécurisation et accès simplifié" />
-          <Step title="Entretien et blanchisserie professionnels" />
-          <Step title="Gestion des litiges" />
+          <img
+            src="/Images/carousel_2.webp"
+            alt="Real Estate Services"
+            className="w-full h-full object-cover"
+          />
         </motion.div>
 
-        {/* Texte supplémentaire */}
-        <motion.p
-          className="text-gray-500 mt-6 text-sm leading-relaxed"
-          initial={{ opacity: 0, y: 20 }}
-          animate={controls}
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-        >
-          {/* Texte supplémentaire si nécessaire */}
-        </motion.p>
+        {/* Section Content */}
+        <div className="p-6 sm:p-8 bg-white rounded-b-xl shadow-md text-center">
+          <motion.p
+            className="text-xl sm:text-2xl font-extrabold text-textColor mb-4 tracking-tight"
+            initial={{ opacity: 0, y: -20 }}
+            animate={controls}
+            variants={{
+              hidden: { opacity: 0, y: -20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 0.8 }}
+          >
+            Une vision long terme
+          </motion.p>
+          <motion.p
+            className="text-sm sm:text-md md:text-lg text-gray-600 leading-relaxed mb-6"
+            initial={{ opacity: 0, y: -20 }}
+            animate={controls}
+            variants={{
+              hidden: { opacity: 0, y: -20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            Augmentez les revenus locatifs de{' '}
+            <span className="text-textColor">votre bien immobilier</span>
+          </motion.p>
 
-        {/* Bouton d'action */}
-        <motion.button
-          className="mt-8 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 font-bold text-white text-lg rounded-lg shadow-lg hover:shadow-2xl"
-          initial={{ opacity: 0, y: 20 }}
-          animate={controls}
-          variants={{
-            hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0 },
-          }}
-          whileHover={{
-            scale: 1.1,
-            transition: { duration: 0.3 },
-          }}
-        >
-          Découvrez nos services
-        </motion.button>
+          {/* Service List */}
+          <motion.ul
+            className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-8 text-left"
+            initial="hidden"
+            animate={controls}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.2,
+                },
+              },
+            }}
+          >
+            <Step title="Création d'annonces attractives" />
+            <Step title="Optimisation des annonces" />
+            <Step title="Shooting photo professionnel" />
+            <Step title="Stratégie tarifaire dynamique" />
+            <Step title="Gestion complète des voyageurs" />
+            <Step title="Sécurisation et accès simplifié" />
+            <Step title="Blanchisserie professionnels." />
+            <Step title="Gestion des litiges" />
+          </motion.ul>
+
+          {/* Action Button */}
+          <motion.button
+            className="mt-8 px-6 py-3 bg-gradient-to-r from-red-500 to-red-600 font-bold text-white text-sm sm:text-lg rounded-lg shadow-lg hover:shadow-2xl"
+            initial={{ opacity: 0, y: 20 }}
+            animate={controls}
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            whileHover={{
+              scale: 1.1,
+              transition: { duration: 0.3 },
+            }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Découvrez nos services
+          </motion.button>
+        </div>
       </div>
-    </div>
     </section>
-   
   );
 }
 
 const Step = ({ title }: { title: string }) => {
   return (
     <motion.li
-      className="flex items-center gap-4 justify-start"
+      className="flex items-start gap-4"
       variants={{
         hidden: { opacity: 0, y: 20 },
         visible: { opacity: 1, y: 0 },
       }}
     >
       <CheckIcon />
-      <p className="text-gray-700 text-lg leading-relaxed">{title}</p>
+      <p className="text-gray-700 text-sm sm:text-md md:text-lg leading-relaxed">
+        {title}
+      </p>
     </motion.li>
   );
 };
